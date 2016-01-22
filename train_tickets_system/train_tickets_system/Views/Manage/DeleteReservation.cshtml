@@ -1,0 +1,56 @@
+﻿@model train_tickets_system.Models.DeleteViewModel
+@{
+    ViewBag.Title = "Cancel reservation";
+}
+
+<h2>Cancel reservation</h2>
+
+<h3>Are you sure you want to cancel this reservation?</h3>
+@if(Model.reservationTrip.DepartureTime.Subtract(DateTime.Today)<new TimeSpan(3,0,0,0))
+{
+    <div class="text-danger">
+        You are going to be refunded half of the ticket's cost because you cancel less than 3 days before leaving.
+    </div>
+}
+<div>
+    <h4>Reservation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.userReservation.ReservationId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userReservation.ReservationId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.userReservation.TripRefId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.userReservation.TripRefId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.reservationTrip.DepartureTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.reservationTrip.DepartureTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.reservationTrip.ArrivalTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.reservationTrip.ArrivalTime)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Confirm" class="btn btn-default" /> |
+            @Html.ActionLink("Back", "Index")
+        </div>
+    }
+</div>
+

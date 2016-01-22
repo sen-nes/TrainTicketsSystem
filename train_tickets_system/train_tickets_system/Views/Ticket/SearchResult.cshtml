@@ -1,0 +1,66 @@
+﻿@model IEnumerable<train_tickets_system.ViewModels.SearchResultViewModel>
+
+@{
+    ViewBag.Title = "Available trips";
+}
+
+@if (Model.Count() == 0)
+{
+    <div class="alert alert-danger" role="alert" style="margin: 4px 7px 2px 4px">
+        <strong>We're sorry!</strong> There are no more trips for the day.<br />
+        You can <a href="@Url.Action("Search", "Ticket")" class="alert-link">search</a> for an earlier trip.
+    </div>
+}
+else
+{
+    <div class="page-header">
+        <h2><span class="text-info">@Model.ElementAt(0).Trip.Route.InitialCity.Name</span> 
+        <span class="glyphicon glyphicon-chevron-right"></span> 
+        <span class="text-info">@Model.ElementAt(0).Trip.Route.TargetCity.Name</span> 
+        <small>@Model.ElementAt(0).Trip.DepartureTime.ToShortDateString()</small></h2>
+    </div>
+
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayName("Depart")
+            </th>
+
+            <th>
+                @Html.DisplayName("Arrive")
+            </th>
+
+            <th>
+                Free Seats
+            </th>
+
+            <th>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Trip.DepartureTime.ToShortTimeString()
+                </td>
+
+                <td>
+                    @item.Trip.ArrivalTime.ToShortDateString(), @item.Trip.ArrivalTime.ToShortTimeString()
+                </td>
+
+                <td>
+                    <abbr title="Economy class">@item.FreeEconomySeats</abbr>, <abbr title="Business class">@item.FreeBusinessSeats</abbr>
+                </td>
+
+                <td>
+                    @using (Html.BeginForm("Book", "Ticket", new { id = item.Trip.TripId }, FormMethod.Get))
+                    {
+                        <a class="btn btn-primary" href="@Url.Action("Book", "Ticket", new { id = item.Trip.TripId})"><span class="glyphicon glyphicon-check"></span> BOOK A TICKET</a> 
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
+

@@ -1,0 +1,15 @@
+﻿@model train_tickets_system.Models.SendConfirmationViewModel
+@{
+    ViewBag.Title = "Confirmation sent";
+}
+
+<h2>Confirmation e-mail</h2>
+@if(Model.Confirmed)
+{
+    @Html.Raw("Your ticket is already confirmed.")
+}
+else
+{
+    @Html.Raw("A verification email has been sent.")
+}
+

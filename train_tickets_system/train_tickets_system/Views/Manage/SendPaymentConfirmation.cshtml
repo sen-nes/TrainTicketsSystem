@@ -1,0 +1,18 @@
+﻿@model train_tickets_system.Models.SendPaymentConfirmationViewModel
+
+@{
+    ViewBag.Title = "Payment confirmation";
+}
+
+@if(Model.paymentConfirmed == false)
+{
+    <h2>Receipt sent</h2>
+    @Html.Raw("You have successfully paid for the ticket. A receipt has beeen sent to your email");
+}
+else
+{
+    <h2>Already paid</h2>
+    @Html.Raw("You have already paid for this ticket.");
+}
+
+

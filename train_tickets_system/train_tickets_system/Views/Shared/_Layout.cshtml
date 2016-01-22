@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - TrainTicketingSystem</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div id="container">
+
+        <div id="header">
+
+            <nav class="navbar navbar-default navbar-fixed-top navbar-border-bottom navbar-font">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="../../Images/Logo.png" width="22" height="22" /></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("SEARCH", "Search", "Ticket")</li>
+                            <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("ABOUT", "About", "Home")</li>
+                        </ul>
+
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+
+        <div id="body">
+
+            <div class="container body-content">
+                <div class="row col-sm-offset-1 col-sm-10 col-sm-1">
+                    @RenderBody()
+
+                    <hr />
+                </div>
+            </div>
+
+        </div>
+
+        <div id="banner">
+
+            <div class="well well-sm center">
+                <div class="banner-bottom">
+                    <a class="banner-link" href="http://www.iamsterdam.com/en/"></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="footer">
+
+            <footer class="container text-center">
+                <div class="center">
+                    <p>&copy; @DateTime.Now.Year - Train Ticketing System</p>
+                </div>
+            </footer>
+
+        </div>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

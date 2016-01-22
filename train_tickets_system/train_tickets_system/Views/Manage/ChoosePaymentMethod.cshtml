@@ -1,0 +1,36 @@
+﻿@model train_tickets_system.Models.ChoosePaymentMethodViewModel
+@{
+    ViewBag.Title = "ChoosePaymentMethod";
+}
+
+<h2>Choose Payment Method</h2>
+    <div class="text-danger">
+        You currently have <b>@Model.promoKm</b> free kilometers left.
+    </div>
+
+<div>
+    <h4>Chose a payment method:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Money: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.money) €
+        </dd>
+        <dt>
+            Free kilometers: 
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.distance) kilometers
+        </dd>
+        
+    </dl>
+
+    <a class="btn btn-primary" href="@Url.Action("SendPaymentConfirmation", "Manage", new { id = Model.resId})">PAY WITH MONEY</a> |
+    <a class="btn btn-primary" href="@Url.Action("SendPaymentConfirmationPromo", "Manage", new { id = Model.resId})">PAY WITH KILOMETERS</a>
+</div>
+
+
+

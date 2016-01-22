@@ -1,0 +1,218 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "";
+    //Layout = "~/Views/Ticket/Book.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - TrainTicketingSystem</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    
+
+    <style>
+        .bg-grey {
+            background-color: rgba(246,246,246,0.8);
+        }
+    </style>
+
+    <style>
+        .container-fluid {
+            padding: 60px 50px;
+        }
+    </style>
+
+    <style>
+        .logo-small {
+            color: red;
+            font-size: 50px;
+        }
+
+        .logo {
+            color: red;
+            font-size: 200px;
+        }
+
+        @@media screen and (max-width: 768px) {
+            .col-sm-4 {
+                text-align: center;
+            }
+        }
+
+        @@media screen and (min-width: 768px) {
+            .promotions {
+                margin: auto;
+                width: 75%;
+                padding: 10px;
+            }
+        }
+
+        @@media screen and (min-width: 768px) {
+            .destinations {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body class="home">
+    <div id="container">
+        <div id="header">
+            <nav class="navbar navbar-default navbar-fixed-top navbar-border-bottom navbar-font">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="../Images/logo.png" width="22" height="22" /></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("SEARCH", "Search", "Ticket")</li>
+                            <li>@Html.ActionLink("CONTACT", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("ABOUT", "About", "Home")</li>
+                        </ul>
+
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+
+        <div class="home">
+            <div class="jumbotron text-center" style="margin-bottom: 0px">
+                <h1>Today Train Ticket System</h1>
+                <p>We specialize in your comfort</p>
+            </div>
+
+            <div class="container-fluid bg-grey promotions">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="glyphicon glyphicon-euro logo"></span>
+                    </div>
+                    <div class="col-sm-8">
+                        <h2>Promotions</h2>
+                        <h4><strong>TRAVEL:</strong> Travel even more..</h4>
+                        <p><strong>FREE KILOMETERS:</strong> Free 400 for every 2000 kilometers traveled with us...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid text-center" style="color: white">
+                <h2>SERVICES</h2>
+                <h4>What we offer</h4>
+                <br>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="glyphicon glyphicon-wrench logo-small"></span>
+                        <h4>HARD WORK</h4>
+                        <p>Hard work for your pleasure!</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <span class="glyphicon glyphicon-heart logo-small"></span>
+                        <h4>LOVE</h4>
+                        <p>Love for our customers!</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <span class="glyphicon glyphicon-lock logo-small"></span>
+                        <h4>JOB DONE</h4>
+                        <p>Job done with care!</p>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                .thumbnail {
+                    padding: 0 0 15px 0;
+                    border: none;
+                    border-radius: 0;
+                }
+
+                    .thumbnail img {
+                        width: 100%;
+                        height: 100%;
+                        margin-bottom: 10px;
+                    }
+            </style>
+
+            <div class="container-fluid text-center bg-grey">
+                <h2>Destinations</h2>
+                <h4>Where you can go with our help</h4>
+                <div class="row text-center">
+                    <div class="col-sm-4">
+                        <div class="thumbnail">
+                            <img src="../Images/paris.jpg" alt="Paris">
+                            <p><strong>Paris</strong></p>
+                            <p>Yes, you can visit Paris</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="thumbnail">
+                            <img src="../Images/amsterdam.jpg" alt="Amsterdam">
+                            <p><strong>Amsterdam</strong></p>
+                            <p>You can visit Amsterdam</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="thumbnail">
+                            <img src="../Images/berlin.jpg" alt="Berlin">
+                            <p><strong>Berlin</strong></p>
+                            <p>Yes, even Berlin</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row text-center destinations">
+                    <div class="col-sm-offset-2 col-sm-4">
+                        <div class="thumbnail">
+                            <img src="../Images/londonjpg.jpg" alt="London">
+                            <p><strong>London</strong></p>
+                            <p>Try going around London</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="thumbnail">
+                            <img src="../Images/brussels.jpg" alt="Brussels">
+                            <p><strong>Brussels</strong></p>
+                            <p>Definitely visit Brussels</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="banner">
+
+            <div class="well well-sm center">
+                <div class="banner-bottom">
+                    <a class="banner-link" href="http://www.iamsterdam.com/en/"></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="footer">
+
+            <footer class="container text-center">
+                <div class="center">
+                    <p>&copy; @DateTime.Now.Year - Train Ticketing System</p>
+                </div>
+            </footer>
+
+        </div>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@RenderSection("scripts", required: false)*@
+</body>
+</html>

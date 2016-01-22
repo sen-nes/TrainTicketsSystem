@@ -1,0 +1,129 @@
+﻿@model train_tickets_system.Models.IndexViewModel
+@{
+    ViewBag.Title = "User Control Panel";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+ 
+    <hr />
+    <dl class="dl-horizontal" style="margin-bottom:40px">
+        <dt>Password:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change your password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
+        <dt>Promotional kilometers:</dt>
+        <dd>
+            @Model.promoKilometers
+        </dd>
+        <dt>Booked tickets:</dt>
+        <dd>
+            @Model.BookedTrips.Count
+        </dd>
+    </dl>
+
+    <div>
+        @if (Model.BookedTrips.Count != 0)
+        {
+            <table class="table">
+
+                <tr>
+                    <th>
+                        @Html.DisplayName("Trip")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Train")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Seats")
+                    </th>
+                    <th>
+                        @Html.DisplayName("From")
+                    </th>
+                    <th>
+                        @Html.DisplayName("To")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Depart")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Arrive")
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+                @foreach (var item in Model.userReservations)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Trip.TripId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Trip.TrainRefId)
+                        </td>
+                        <td>
+                            @foreach (var reservation in Model.userReservations)
+                            {
+                                if (reservation.TripRefId == item.Trip.TripId)
+                                {
+                                    @reservation.Seats
+                                }
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Trip.Route.InitialCity.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Trip.Route.TargetCity.Name)
+                        </td>
+                        <td>
+                            @item.Trip.ArrivalTime.ToShortDateString(), @item.Trip.ArrivalTime.ToShortTimeString()
+                        </td>
+                        <td>
+                            @item.Trip.ArrivalTime.ToShortDateString(), @item.Trip.ArrivalTime.ToShortTimeString()
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="@Url.Action("DeleteReservation", "Manage", new { id = item.ReservationId})">CANCEL</a>
+
+                            @if (!item.Confirmed)
+                            {
+                                <a class="btn btn-primary" href="@Url.Action("SendConfirmation", "Manage", new { id = item.ReservationId})">RESEND</a>
+                            }
+
+                            @if (item.Paid == 0 && item.Confirmed)
+                            {
+                                if (Model.promoKilometers < Model.userRoutes.Find(x=>x.RouteId==Model.userTrips.Find(y=>y.TripId == item.TripRefId).RouteRefId).Value* item.Seats)
+                                {
+
+                                    <a class="btn btn-primary" href="@Url.Action("SendPaymentConfirmation", "Manage", new { id = item.ReservationId})">PAY</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-primary" href="@Url.Action("ChoosePaymentMethod", "Manage", new { id = item.ReservationId})">PAY</a>
+                                }
+                               
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+
+        else
+        {
+            @Html.Raw("You don't have any booked tickets.")
+        }
+    </div>
+</div>

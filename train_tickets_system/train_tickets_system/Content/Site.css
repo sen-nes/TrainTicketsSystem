@@ -1,0 +1,94 @@
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+html,
+body {
+   margin:0;
+   padding:0;
+   padding-top:16px;
+   height:100%;
+}
+
+#header {
+   padding:5px;
+}
+
+#container {
+   min-height:100%;
+   position:relative;
+}
+
+#body {
+   padding-top:10px;
+}
+
+#footer {
+    font-weight: bold;
+    color: black;
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:50px;
+    background: red;
+}
+
+.center {
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+}
+
+.navbar-border-bottom {
+    border-bottom: 1px solid;
+    border-bottom-color:red;
+}
+
+.navbar-font {
+    font: 20px "Montserrat", sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+}
+
+.banner-link {
+    display: block;
+    height: 200px;
+}
+
+.banner-bottom {
+    background-image: url("http://wikitravel.org/upload/shared//4/4f/Amsterdam_Banner.jpg");
+    background-size: 100% 200px;
+}
+
+#banner {
+    padding-top: 10px;
+    padding-bottom: 60px;
+}
+
+.home {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../Images/main_page_background.jpg) 0 35% no-repeat fixed #000;
+    background-size: cover;
+    background-position: center center;
+}
+
+.jumbotron {
+    background-color: red;
+    color: #ffffff;
+    padding: 100px 25px;
+}

@@ -1,0 +1,73 @@
+﻿@model train_tickets_system.ViewModels.SearchViewModel
+
+@{
+    ViewBag.Title = "Search";
+}
+
+@*<script>
+    $('#datepicker').datepicker({
+    });
+</script>*@
+
+<style>
+    @@media screen and (max-width: 768px) {
+        .centermeh {
+            margin: auto;
+            width: 60%;
+            padding: 10px;
+        }
+    }
+</style>
+
+<h2>@ViewBag.Title</h2>
+<h4>Search for a ticket</h4>
+
+
+@if (this.Html.ViewData.ModelState.Any(k => k.Key == string.Empty))
+{
+    <div class="alert alert-danger">
+        @Html.ValidationSummary(true)
+    </div>
+}
+
+<hr />    
+
+@using (@Html.BeginForm())
+{
+    <div class="form-horizontal centermeh">
+        <div class="form-group">
+            @Html.LabelFor(model => model.InitialCityId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.InitialCityId, Model.Cities, "Choose a city", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.InitialCityId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TargetCityId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TargetCityId, Model.Cities, "Choose a city", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TargetCityId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group form-inline">
+            @Html.LabelFor(model => model.DepartureDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DepartureDate, new { htmlAttributes = new { @class = "form-control col-sm-7", @id = "datepicker" } })            
+                @Html.DropDownListFor(model => model.Hour, Model.Hours, htmlAttributes: new { @class = "form-control col-sm-3" })
+                <div class="form-group col-md-10">
+                    @Html.ValidationMessageFor(model => model.DepartureDate, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Hour, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group date"></div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> SEARCH</button>
+            </div>
+        </div>
+    </div>
+}
